@@ -17,13 +17,20 @@ fun main(args: Array<String>) {
 
     val meetins = listOf(MeetingNew(1, "Board Meeting"), MeetingNew(2, "Committee Meeting"))
 
-    val titles = meetins.map { it.title }
+    var titles = meetins.map { it.title }
 
     println(titles)
 
     var people = meetins.flatMap { it.people } . distinct()
 
     println(people)
+
+    var titleSeq = meetins
+            .asSequence()
+            .filter { println("filter($it)");it.title.startsWith("C") }
+            .map { it.title }
+
+    println(titleSeq)
 }
 
 class MeetingNew(val id: Int, val title: String) {
